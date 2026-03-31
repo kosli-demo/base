@@ -48,14 +48,14 @@ jobs:
         run:
           kosli create flow "${KOSLI_FLOW}"
 
-      - name: Begin Kosli Trail
-        run:
-          kosli begin trail "${KOSLI_TRAIL}"
+      # - name: Begin Kosli Trail
+      #   run:
+      #     kosli begin trail "${KOSLI_TRAIL}"
 
-      - name: Write Trail URL to GitHub Step Summary
-        run: |
-          url="${KOSLI_HOST}/${KOSLI_ORG}/flows/${KOSLI_FLOW}/trails/${KOSLI_TRAIL}"
-          echo "[Kosli Trail](${url})" > "${GITHUB_STEP_SUMMARY}"
+      # - name: Write Trail URL to GitHub Step Summary
+      #   run: |
+      #     url="${KOSLI_HOST}/${KOSLI_ORG}/flows/${KOSLI_FLOW}/trails/${KOSLI_TRAIL}"
+      #     echo "[Kosli Trail](${url})" > "${GITHUB_STEP_SUMMARY}"
 
 
   build:
