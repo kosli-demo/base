@@ -40,7 +40,7 @@ jobs:
           echo "repo_json=${REPO_JSON}" >> ${GITHUB_OUTPUT}
 
       - name: Setup Kosli CLI
-        uses: kosli-dev/setup-cli-action@v2
+        uses: kosli-dev/setup-cli-action@v3
         with:
           version: ${{ vars.KOSLI_CLI_VERSION }}
 
@@ -80,7 +80,7 @@ jobs:
       #     make image
 
       # - name: Setup Kosli CLI
-      #   uses: kosli-dev/setup-cli-action@v2
+      #   uses: kosli-dev/setup-cli-action@v3
       #   with:
       #     version: ${{ vars.KOSLI_CLI_VERSION }}
 
