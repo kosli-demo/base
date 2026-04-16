@@ -52,7 +52,7 @@ def find_wrong(json_path, github_org):
         repos = json.load(f)
     results = []
     for repo in repos:
-        if not repo.get("exists"):
+        if not repo["exists"]:
             continue
         repo_name = repo["repo_name"]
         content = get_file_content(github_org, repo_name, "source/datetime.txt", token)
