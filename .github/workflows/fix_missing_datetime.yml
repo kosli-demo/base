@@ -1,8 +1,9 @@
 # The simulate-deployments-from-selected-repos job in the stochastic-committer
-# repo's main.yml fetches source/datetime.txt from every repo in all-repos.json.
-# If any existing repo is missing that file the job fails. This workflow finds
-# such repos and fixes them by pushing the base repo content as a new commit,
-# which creates the missing file.
+# repo's main.yml fetches source/datetime.txt from every repo in all-repos.json
+# and expects its content to be '<repo_name> <unix_epoch_timestamp>'. If any
+# existing repo is missing that file, or has it with wrong content, the job
+# fails. This workflow finds such repos and fixes them by pushing the base repo
+# content as a new commit, which creates or overwrites the file correctly.
 
 name: Fix missing source/datetime.txt
 
