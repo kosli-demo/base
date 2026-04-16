@@ -5,16 +5,16 @@
 # fails. This workflow finds such repos and fixes them by pushing the base repo
 # content as a new commit, which creates or overwrites the file correctly.
 
-name: Fix missing source/datetime.txt
+name: Fix wrong source/datetime.txt
 
 on:
   workflow_dispatch:
 
 jobs:
-  find-missing:
+  find-wrong:
     runs-on: ubuntu-latest
     outputs:
-      missing_repos: ${{ steps.find.outputs.missing_repos }}
+      wrong_repos: ${{ steps.find.outputs.wrong_repos }}
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@v2
@@ -23,20 +23,20 @@ jobs:
 
       - uses: actions/checkout@v6
 
-      - name: Find repos missing source/datetime.txt
+      - name: Find repos with wrong source/datetime.txt
         id: find
         env:
           GH_TOKEN: ${{ secrets.CLONE_PUSH_REPOS }}
         run: |
-          MISSING_REPOS="$(./bin/find_repos_missing_datetime.py)"
-          echo "missing_repos=${MISSING_REPOS}" >> ${GITHUB_OUTPUT}
+          WRONG_REPOS="$(./bin/find_repos_wrong_datetime.py)"
+          echo "wrong_repos=${WRONG_REPOS}" >> ${GITHUB_OUTPUT}
 
-  fix-missing:
-    needs: [find-missing]
-    if: ${{ needs.find-missing.outputs.missing_repos != '[]' }}
+  fix-wrong:
+    needs: [find-wrong]
+    if: ${{ needs.find-wrong.outputs.wrong_repos != '[]' }}
     strategy:
       matrix:
-        include: ${{ fromJSON(needs.find-missing.outputs.missing_repos) }}
+        include: ${{ fromJSON(needs.find-wrong.outputs.wrong_repos) }}
     uses: kosli-demo/stochastic-committer/.github/workflows/commit-to-repo.yml@main
     with:
       repo_name: ${{ matrix.repo_name }}

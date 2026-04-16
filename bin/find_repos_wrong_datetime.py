@@ -45,7 +45,7 @@ def content_is_valid(repo_name, content):
     return bool(re.match(rf"^{re.escape(repo_name)} \d+$", content.strip()))
 
 
-def find_missing_or_bad(json_path, github_org):
+def find_wrong(json_path, github_org):
     """Return list of repo name dicts where exists=true but source/datetime.txt is absent or invalid."""
     token = os.environ.get("GH_TOKEN", "")
     with open(json_path) as f:
@@ -68,5 +68,5 @@ def find_missing_or_bad(json_path, github_org):
 
 
 if __name__ == "__main__":
-    results = find_missing_or_bad("data/all-repos.json", "kosli-demo")
+    results = find_wrong("data/all-repos.json", "kosli-demo")
     print(json.dumps(results))
