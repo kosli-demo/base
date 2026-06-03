@@ -26,7 +26,7 @@ jobs:
           GH_TOKEN: ${{ secrets.CLONE_PUSH_REPOS }}
         run: |
           # REPOS="$(./bin/XXX.py)"
-          echo "repos=["api-key-ci"]" >> ${GITHUB_OUTPUT}
+          echo 'repos=[{"repo_name":"api-key"}]' >> ${GITHUB_OUTPUT}
 
   fix:
     needs: [find-repos]
