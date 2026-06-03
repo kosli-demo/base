@@ -51,7 +51,7 @@ jobs:
 
       - name: Create Kosli Flow
         run:
-          kosli create flow "${KOSLI_FLOW}"
+          kosli create flow "${KOSLI_FLOW}" --use-empty-template
 
       - name: Tag the Flow
         run:
@@ -75,6 +75,7 @@ jobs:
           url="${KOSLI_HOST}/${KOSLI_ORG}/flows/${KOSLI_FLOW}/trails/${KOSLI_TRAIL}"
           echo "[Kosli Trail](${url})" > "${GITHUB_STEP_SUMMARY}"
 
+
   build-artifact:
     needs: [setup]
     runs-on: ubuntu-latest
@@ -96,6 +97,7 @@ jobs:
           kosli attest artifact ./source/datetime.txt
             --artifact-type file
             --name artifact
+
 
   attest-junit:
     needs: [setup]
