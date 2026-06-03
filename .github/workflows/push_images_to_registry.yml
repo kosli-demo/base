@@ -34,8 +34,18 @@ jobs:
     strategy:
       matrix:
         include: ${{ fromJSON(needs.find-repos.outputs.repos) }}
-    uses: kosli-demo/stochastic-committer/.github/workflows/commit-to-repo.yml@main
+    uses: kosli-demo/stochastic-committer/.github/workflows/commit-to-repo-and-run-ci.yml
     with:
+      scope: staging
       repo_name: ${{ matrix.repo_name }}
     secrets:
       CLONE_PUSH_REPOS: ${{ secrets.CLONE_PUSH_REPOS }}
+      KOSLI_API_TOKEN_STAGING: ${{ secrets.KOSLI_API_TOKEN_STAGING }}
+      KOSLI_API_TOKEN_PROD: ${{ secrets.KOSLI_API_TOKEN_PROD }}
+
+
+    # uses: kosli-demo/stochastic-committer/.github/workflows/commit-to-repo.yml@main
+    # with:
+    #   repo_name: ${{ matrix.repo_name }}
+    # secrets:
+    #   CLONE_PUSH_REPOS: ${{ secrets.CLONE_PUSH_REPOS }}
