@@ -63,7 +63,7 @@ def find_repos(json_path, github_org):
     with open(json_path) as f:
         repos = json.load(f)
     results = []
-    for repo in repos[:20]:
+    for repo in repos:
         repo_name = repo["repo_name"]
         if not image_exists(github_org, repo_name):
             results.append({"repo_name": repo_name})
