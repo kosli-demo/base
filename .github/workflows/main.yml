@@ -67,7 +67,7 @@ jobs:
         run: |
           FILTER=".[] | select(.repo_name == \"${REPO_NAME}\")"
           REPO_JSON="$(jq --compact-output "${FILTER}" data/all-repos.json)"
-          echo "repo_json=${REPO_JSON}" >> ${GITHUB_OUTPUT}
+          echo "repo_json=${REPO_JSON:-{}}" >> ${GITHUB_OUTPUT}
 
       - name: Setup Kosli CLI
         uses: kosli-dev/setup-cli-action@v5
