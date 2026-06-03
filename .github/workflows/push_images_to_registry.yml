@@ -34,7 +34,7 @@ jobs:
     strategy:
       matrix:
         include: ${{ fromJSON(needs.find-repos.outputs.repos) }}
-    uses: kosli-demo/stochastic-committer/.github/workflows/commit-to-repo-and-run-ci.yml
+    uses: kosli-demo/stochastic-committer/.github/workflows/commit-to-repo-and-run-ci.yml@main
     with:
       scope: staging
       repo_name: ${{ matrix.repo_name }}
