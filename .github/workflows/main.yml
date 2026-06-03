@@ -86,7 +86,7 @@ jobs:
             --set repo_url=https://github.com/kosli-demo/"${REPO_NAME}"
 
       - name: Tag the Flow with unit_tests
-        if: fromJSON(steps.setup-repo-json.outputs.repo_json).has_junit
+        if: github.event.repository.name != 'base' && fromJSON(steps.setup-repo-json.outputs.repo_json).has_junit
         run:
           kosli tag flow "${KOSLI_FLOW}"
             --set unit_tests=true
@@ -143,7 +143,7 @@ jobs:
 
   attest-junit:
     needs: [setup]
-    if: fromJSON(needs.setup.outputs.repo_json).has_junit
+    if: github.event.repository.name != 'base' && fromJSON(needs.setup.outputs.repo_json).has_junit
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
