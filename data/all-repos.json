@@ -23,20 +23,11 @@
     "repo_name": "listed-derivative",
     "exists": true,
     "has_junit": true,
-    "env": "staging-k8s",
-    "k8s": {
-      "namespace": "beta",
-      "podName": "listed-derivative-vkhhc7gfd-vfg8j",
-      "owners": [
-        {
-          "apiVersion": "apps/v1",
-          "kind": "ReplicaSet",
-          "name": "listed-derivative-vkhhc7gfd",
-          "uid": "765b11d9-9425-5a7e-ab40-44113366723b",
-          "controller": true,
-          "blockOwnerDeletion": true
-        }
-      ]
+    "env": "staging-ecs",
+    "ecs": {
+      "taskArn": "arn:aws:ecs:eu-central-1:111122223333:task/beta/a6667aa9526a1985abfba6fbd3a88e84",
+      "cluster_name": "beta",
+      "service_name": "listed-derivative"
     }
   },
   {
